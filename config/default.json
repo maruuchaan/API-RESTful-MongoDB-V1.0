@@ -1,0 +1,10 @@
+{
+    "nombre" : "Api Rest Node.js -BuscaAclick V1.0 ",
+    "configDB":{
+
+    },
+    "configToken" :{
+        "SEED": "secret",
+        "expiration": "24h"
+    }
+}

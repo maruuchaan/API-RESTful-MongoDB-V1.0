@@ -1,0 +1,10 @@
+{
+    "nombre" : "Api Rest Node.js -BuscaAclick V1.0 ",
+    "configDB":{
+        "HOST": "mongodb://localhost:27017/demo" 
+    },
+    "configToken" :{
+        "SEED": "secret",
+        "expiration": "24h"
+    }
+}
