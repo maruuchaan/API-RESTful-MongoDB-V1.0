@@ -18,7 +18,6 @@ const schema = Joi.object({
 
     email: Joi.string()
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'cl'] } }),
-
 });
 
 ruta.get('/', verificarToken, (req, res) => { //establecemos la ruta raíz de GET
@@ -34,7 +33,7 @@ ruta.get('/', verificarToken, (req, res) => { //establecemos la ruta raíz de GE
     });
 
 });
-
+//POST/AUTH me genera el token de acceso
 ruta.post('/', (req, res) => {
 
     let body = req.body; //el request del cliente = body
@@ -73,30 +72,31 @@ ruta.post('/', (req, res) => {
         };
     }
 )});
-
+    //Actualiza sólo nombre y password porque el mail es por el cual se hace la búsqueda
     ruta.put('/:email',verificarToken, (req, res) => {//se actualizará buscando al usuario por el email
-        //validar el nombre que se desea actualizar
+        
         const { error, value } = schema.validate({ nombre: req.body.nombre });
+        
         if (!error) {
-            let resultado = actualizarUsuario(req.params.email, req.body)
-            resultado.then(valor => {
+                let resultado = actualizarUsuario(req.params.email, req.body);
+               resultado.then(value => {
                 res.json({
-                    nombre: valor.nombre,
-                    email: valor.email
+                    nombre  :   valor.nombre,
+                    email   :   valor.email
                 })
             }).catch(err => {
-                res.status(400).json({
-                    error: err
-                })
-            });
-        } else {
             res.status(400).json({
-                error: error
+                err
+            })
+            });
+        }else{
+            res.status(400).json({
+                error
             })
         }
     });
 
-    ruta.delete('/:email',verificarToken, (req, res) => {
+    ruta.delete('/:email', verificarToken,  (req, res) => {
         let resultado = desactivarUsuario(req.params.email)
         resultado.then(valor => {
             res.json({
