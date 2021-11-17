@@ -1,7 +1,6 @@
 {
   "name": "api-restful-mongodb",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +14,18 @@
     "express": "^4.17.1",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.12"
-  }
+    "mongodb": "^4.1.4",
+    "mongoose": "^6.0.13",
+    "node": "^17.1.0",
+    "nodemon": "^2.0.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maruuchaan/API-RESTful-MongoDB-V1.0.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maruuchaan/API-RESTful-MongoDB-V1.0/issues"
+  },
+  "homepage": "https://github.com/maruuchaan/API-RESTful-MongoDB-V1.0#readme",
+  "description": ""
 }

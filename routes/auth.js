@@ -13,18 +13,18 @@ ruta.post('/', (req,res) => {
             if(datos){
                 const passwordValido = bcrypt.compareSync(req.body.password, datos.password); //compara el password del require con el password que obtenemos de la bbdd a través de findOne
                 if(!passwordValido) return res.status(400).json({error: 'ok', msj: 'Usuario o contraseña incorrecta'});
-                const Token = jwt.sign({
-                    usuario: {_id: datos._id, nombre: datos.nombre, email: datos.email}
-                  }, config.get('configToken.SEED'), { expiresIn:config.get('configToken.expiration')});
-                // const Token = jwt.sign({_id: datos.id, nombre: datos.nombre, email: datos.email}, 'password')//sign es lo que genera el payload
-                // res.send(Token); //esta es otra forma de enviar el token pero sin condición de expiración
+                
+                //Generar Token
+                const jwToken = jwt.sign({ //sign es lo que genera el payload
+                    data: {_id: datos._id, nombre: datos.nombre, email: datos.email}
+                }, config.get('configToken.SEED'), {expiresIn: config.get('configToken.expiration')});
                 res.json({
-                    usuario:{
-                        _id             :datos._id,
-                        nombre          :datos.nombre,
-                        email           :datos.email
+                    usuario: {
+                        _id     : datos._id,
+                        nombre  : datos.nombre,
+                        email   : datos.email
                     },
-                    Token
+                    jwToken
                 });
             }else{
                 res.status(400).json({

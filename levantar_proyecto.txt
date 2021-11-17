@@ -1,0 +1,9 @@
+npm init
+npm i express
+npm i node
+npm i nodemon
+npm i mongoose
+npm i mongodb 
+npm i jsonwebtoken
+npm install config
+
